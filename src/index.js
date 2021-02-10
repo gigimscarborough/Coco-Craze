@@ -8,11 +8,11 @@ import Game from './scripts/game'
 // const audioContext = new AudioContext();
 // const calypso = audioContext.createMediaElementSource(document.getElementById('audio'));
 
-const audioContext = new AudioContext();
+const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 
 let beach
 
-fetch('src/assets/sounds/calming-sea-sounds.mp3')
+fetch('src/assets/sounds/calypso1.mp3')
 .then(data => data.arrayBuffer())
 .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
 .then(decodedAudio => {
@@ -20,13 +20,33 @@ fetch('src/assets/sounds/calming-sea-sounds.mp3')
 });
 
 
-document.addEventListener('mousemove', playSound)
+// document.addEventListener('mousemove', playSound)
 
-function playSound(e) {
-  const waves = audioContext.createBufferSource();
-  waves.buffer = beach
-  waves.connect(audioContext.destination)
-  waves.start(audioContext.currentTime)
+const track = document.getElementById("audio")
+track.volume = 0.5
+
+function playSound() {
+  // const waves = audioContext.createBufferSource();
+  // waves.buffer = beach
+  // waves.connect(audioContext.destination)
+  // waves.start(audioContext.currentTime)
+  track.play()
+  audioBtn.classList.add('on')
+  document.removeEventListener('mouseover', playSound)
+
+}
+const audioBtn = document.getElementById("audio-btn")
+
+audioBtn.addEventListener('click', playPause)
+
+function playPause() {
+if (!audioBtn.classList.contains('on')){
+  track.play();
+  audioBtn.classList.add('on')
+} else {
+  track.pause();
+  audioBtn.classList.remove('on')
+}
 
 }
 

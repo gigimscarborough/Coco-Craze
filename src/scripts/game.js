@@ -29,9 +29,12 @@ class Game {
    startGame(){
        this.basket
        this.coconut
+       document.getElementById('audio').src = 'src/assets/sounds/calypso1.mp3'
+       document.getElementById('audio').load()
        this.displayScore();
        this.loop = setInterval(this.draw, 10)
        this.isPlaying = true
+
    }
 
    draw(){
@@ -59,6 +62,8 @@ class Game {
        this.isPlaying = false;
        this.score = 0;
        this.lives = 3;
+       document.getElementById('audio').src = 'src/assets/sounds/calming-sea-sounds.mp3'
+       document.getElementById('audio').load()
        document.getElementById("game-start").style.display = "block"
        document.getElementById("game-start").innerText = `Game Over... Press Enter To Play Again`
 
