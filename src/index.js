@@ -3,39 +3,34 @@ import Basket from './scripts/basket'
 import Coconut from './scripts/coconut'
 import Game from './scripts/game'
 
-// const AudioContext = window.AudioContext || window.webkitAudioContext;
-
-// const audioContext = new AudioContext();
-// const calypso = audioContext.createMediaElementSource(document.getElementById('audio'));
-
-const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-
-let beach
-
-fetch('src/assets/sounds/calypso1.mp3')
-.then(data => data.arrayBuffer())
-.then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
-.then(decodedAudio => {
-  beach = decodedAudio;
-});
-
-
-// document.addEventListener('mousemove', playSound)
 
 const track = document.getElementById("audio")
+const audioBtn = document.getElementById("audio-btn")
 track.volume = 0.5
 
+const game = new Game();
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === "Enter" && game.isPlaying === false){
+    document.getElementById("game-start").style.display = "none"
+    track.src = 'src/assets/sounds/calypso1.mp3'
+    if (audioBtn.classList.contains('on')){
+      track.play()
+    } else{
+      track.pause()
+    }
+    game.startGame();
+  }
+})
+
+
+document.addEventListener('mousemove', playSound)
 function playSound() {
-  // const waves = audioContext.createBufferSource();
-  // waves.buffer = beach
-  // waves.connect(audioContext.destination)
-  // waves.start(audioContext.currentTime)
   track.play()
   audioBtn.classList.add('on')
-  document.removeEventListener('mouseover', playSound)
+  document.removeEventListener('mousemove', playSound)
 
 }
-const audioBtn = document.getElementById("audio-btn")
 
 audioBtn.addEventListener('click', playPause)
 
@@ -50,13 +45,6 @@ if (!audioBtn.classList.contains('on')){
 
 }
 
-const game = new Game();
-document.addEventListener('keydown', (e) => {
-  if (e.key === "Enter" && game.isPlaying === false){
-    document.getElementById("game-start").style.display = "none"
-    game.startGame();
-  }
-})
 
 const howTo = document.getElementById("how-to-play");
 const scroll = document.getElementById("scroll-background")

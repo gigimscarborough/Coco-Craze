@@ -22,15 +22,14 @@ class Game {
         this.score = 0;
         this.lives = 3;
         this.isPlaying = false;
-
+        this.track = document.getElementById("audio")
+        this.audioBtn = document.getElementById("audio-btn")
         
     }
 
    startGame(){
        this.basket
        this.coconut
-       document.getElementById('audio').src = 'src/assets/sounds/calypso1.mp3'
-       document.getElementById('audio').load()
        this.displayScore();
        this.loop = setInterval(this.draw, 10)
        this.isPlaying = true
@@ -62,8 +61,13 @@ class Game {
        this.isPlaying = false;
        this.score = 0;
        this.lives = 3;
-       document.getElementById('audio').src = 'src/assets/sounds/calming-sea-sounds.mp3'
-       document.getElementById('audio').load()
+       document.getElementById("audio").src = 'src/assets/sounds/calming-sea-sounds.mp3'
+       document.getElementById("audio").load()
+       if (this.audioBtn.classList.contains('on')) {
+           this.track.play()
+       } else {
+           this.track.pause()
+       }
        document.getElementById("game-start").style.display = "block"
        document.getElementById("game-start").innerText = `Game Over... Press Enter To Play Again`
 
