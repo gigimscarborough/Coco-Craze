@@ -1,0 +1,101 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./dist/main.css" />
+    <title>JS Project Skeleton</title>
+  </head>
+
+  <body>
+    <button id="canvas-demo">Canvas Demo</button>
+    <button id="DOM-demo">DOM Demo</button>
+    <script src="./dist/main.js"></script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="./dist/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+    crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+  <title>JS Project Skeleton</title>
+</head>
+
+<body>
+  <div class="navbar">
+    <div class="links">
+      <a href="https://github.com/gigimscarborough">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://linkedin.com/in/gigimscarborough">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://angel.co/u/gigi-scarborough">
+        <i class="fab fa-angellist"></i>
+      </a>
+      <div id="how-to-play">
+        <img src="src/assets/images/beach_sign.png" alt="">
+        <p>How To PLAY</p>
+      </div>
+    </div>
+    <div class="logo"></div>
+
+  </div>
+  <div id="scroll-background">
+    <div id="scroll-top">
+      <div class="directions">
+        <p>How To Play:</p>
+        <p>In this island paradise your only worry is maintaining your electrolyte balance. Catch the falling coconuts
+          by moving left and right on your mousepad. Get really lucky and catch a mango or two. But be warned, there are
+          icky island spiders lurking about eager to make their way
+          into your basket.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="facts">
+    <div class="border">
+      <div class="disp">
+        <div class="fun">
+          <p>Did You Know?</p>
+          <p id="fun-fact-here"></p>
+        </div>
+        <div class="audio-div">
+          <p>Audio</p>
+          <p id="audio-btn"> &#9199;</p>
+          </p>
+          <audio id="audio">
+            <source src="src/assets/sounds/calypso1.mp3">
+          </audio>
+        </div>
+        <div class="scoreboard">
+          <p id="score"> </p>
+
+          <p id="lives"> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="game-div">
+    <div class="game-box">
+      <canvas id="game-canvas" width="720" height="425"></canvas>
+      <p id="game-start">Press Enter To Start Game</p>
+    </div>
+  </div>
+
+  <script src="./dist/main.js"></script>
+</body>
+
+</html>
