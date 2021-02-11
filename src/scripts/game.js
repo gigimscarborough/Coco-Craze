@@ -33,8 +33,6 @@ class Game {
     }
 
     startGame() {
-        this.basket
-        this.coconut
         this.displayScore();
         //    this.loop = setInterval(this.draw, 10)
         document.getElementById('level-bg').style.display = "none"
@@ -49,32 +47,44 @@ class Game {
                 setTimeout(() => {
                     window.cancelAnimationFrame(this.stopId)
                     this.ctx.clearRect(0, 0, 720, 425);
-                    document.getElementById('level-bg').style.display = "none"
+                    document.getElementById('level-bg').classList.remove("fade-stop")
+                    document.getElementById('level-bg').classList.add("fade-out")
                     document.getElementById("level-change").innerHTML = `Level Two`
                     document.getElementById("level-change").style.display = "block"
                     setTimeout(() => {
-                        document.getElementById("level-change").style.display = "none"
                         document.getElementById('level-bg').src = "src/assets/images/level2.jpg"
+                        document.getElementById('level-bg').style.display = "none"
+                        document.getElementById('level-bg').classList.add("fade-stop")
+                        document.getElementById('level-bg').classList.remove("fade-out")
+                    setTimeout(() => {
+                        document.getElementById("level-change").style.display = "none"
                         document.getElementById('level-bg').style.display = "block"
                         setTimeout(() => {
                             window.requestAnimationFrame(this.levelTwo)
                             setTimeout(() => {
                                 window.cancelAnimationFrame(this.stopId)
                                 this.ctx.clearRect(0, 0, 720, 425);
-                                document.getElementById('level-bg').style.display = "none"
+                                document.getElementById('level-bg').classList.remove("fade-stop")
+                                document.getElementById('level-bg').classList.add("fade-out")
                                 document.getElementById("level-change").innerHTML = `Level Three`
                                 document.getElementById("level-change").style.display = "block"
                                 setTimeout(() => {
-                                    document.getElementById("level-change").style.display = "none"
                                     document.getElementById('level-bg').src = "src/assets/images/level3.jpg"
+                                    document.getElementById('level-bg').style.display = "none"
+                                    document.getElementById('level-bg').classList.add("fade-stop")
+                                    document.getElementById('level-bg').classList.remove("fade-out")
+                                    setTimeout(() => {
+                                    document.getElementById("level-change").style.display = "none"
                                     document.getElementById('level-bg').style.display = "block"
                                     setTimeout(() => {
                                         window.requestAnimationFrame(this.levelThree)
                                     }, 5000)
+                                }, 100)
                                 }, 4000)
                             }, 10000)
                         }, 5000)
-                    }, 4000)
+                    }, 100)
+                }, 4000)
                 }, 10000)
             }, 4000)
 
