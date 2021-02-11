@@ -15,8 +15,13 @@ class Game {
         this.coconut2 = new Coconut(this);
         this.mango = new Mango(this)
         this.spider = new Spider(this)
+        this.spider2 = new Spider(this)
+        this.spider3 = new Spider(this)
+        this.spider4 = new Spider(this)
         this.startGame = this.startGame.bind(this);
-        this.draw = this.draw.bind(this);
+        this.levelOne = this.levelOne.bind(this);
+        this.levelTwo = this.levelTwo.bind(this);
+        this.levelThree = this.levelThree.bind(this);
         this.displayScore = this.displayScore.bind(this);
         this.handleLives = this.handleLives.bind(this);
         this.score = 0;
@@ -31,12 +36,40 @@ class Game {
        this.basket
        this.coconut
        this.displayScore();
-       this.loop = setInterval(this.draw, 10)
+    //    this.loop = setInterval(this.draw, 10)
+        document.getElementById("level-change").style.display = "block"
+        setTimeout(() => {
+            document.getElementById("level-change").style.display = "none"
+            window.requestAnimationFrame(this.levelOne)
+            setTimeout(() => {
+                window.cancelAnimationFrame(this.stopId)
+                this.ctx.clearRect(0, 0, 720, 425); 
+                document.getElementById("level-change").innerHTML = `Level Two`
+                document.getElementById("level-change").style.display = "block"
+                setTimeout(() => {
+                window.requestAnimationFrame(this.levelTwo)
+                document.getElementById("level-change").style.display = "none"
+                setTimeout(() => {
+                    window.cancelAnimationFrame(this.stopId)
+                    this.ctx.clearRect(0, 0, 720, 425);
+                    document.getElementById("level-change").innerHTML = `Level Three`
+                    document.getElementById("level-change").style.display = "block"
+                    setTimeout(() => {
+                        window.requestAnimationFrame(this.levelThree)
+                        document.getElementById("level-change").style.display = "none"
+                    }, 5000)
+                }, 10000)
+            }, 5000)
+            }, 10000)
+
+        }, 5000)
        this.isPlaying = true
 
    }
 
-   draw(){
+   levelOne(){
+
+       this.stopId = window.requestAnimationFrame(this.levelOne) 
        if (this.lives > 0){
        this.ctx.clearRect(0, 0, 720, 425);
        this.spider.move(this.ctx)
@@ -44,10 +77,56 @@ class Game {
        this.mango.move(this.ctx);
        this.basket.draw(this.ctx);
        } else {
+           
            this.gameOver()
        }
    }
 
+    levelTwo() {
+
+        this.stopId = window.requestAnimationFrame(this.levelTwo)
+        if (this.lives > 0) {
+            this.ctx.clearRect(0, 0, 720, 425);
+            this.spider.direction.y = 2.3
+            this.spider2.direction.y = 2.4
+            this.coconut.direction.y = 2.2
+            this.coconut2.direction.y = 2.3
+            this.spider.move(this.ctx);
+            this.spider2.move(this.ctx)
+            this.coconut.move(this.ctx);
+            this.coconut2.move(this.ctx);
+            this.mango.move(this.ctx);
+            this.basket.draw(this.ctx);
+        } else {
+
+            this.gameOver()
+        }
+    }
+
+    levelThree() {
+
+        this.stopId = window.requestAnimationFrame(this.levelThree)
+        if (this.lives > 0) {
+            this.ctx.clearRect(0, 0, 720, 425);
+            this.spider.direction.y = 2.4
+            this.spider2.direction.y = 2.4
+            this.spider3.direction.y = 2.5
+            this.spider4.direction.y = 2.5
+            this.coconut.direction.y = 2.3
+            this.coconut2.direction.y = 2.4
+            this.spider.move(this.ctx);
+            this.spider2.move(this.ctx)
+            this.spider3.move(this.ctx);
+            this.spider4.move(this.ctx)
+            this.coconut.move(this.ctx);
+            this.coconut2.move(this.ctx);
+            this.mango.move(this.ctx);
+            this.basket.draw(this.ctx);
+        } else {
+
+            this.gameOver()
+        }
+    }
    displayScore(){
        document.getElementById("score").innerText = `Score: ${this.score}`
        this.handleLives()
@@ -56,7 +135,8 @@ class Game {
 
    gameOver(){
        this.handleLives()
-       clearInterval(this.loop);
+    //    clearInterval(this.loop);
+       window.cancelAnimationFrame(this.stopId)
        this.ctx.clearRect(0, 0, 720, 425);
        this.isPlaying = false;
        this.score = 0;
@@ -68,8 +148,8 @@ class Game {
        } else {
            this.track.pause()
        }
-       document.getElementById("game-start").style.display = "block"
-       document.getElementById("game-start").innerText = `Game Over... Press Enter To Play Again`
+       document.getElementById("game-over").style.display = "block"
+    //    document.getElementById("level-change").innerText = `Game Over... Press Enter To Play Again`
 
    }
 

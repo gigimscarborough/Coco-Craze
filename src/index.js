@@ -13,6 +13,7 @@ const game = new Game();
 document.addEventListener('keydown', (e) => {
   if (e.key === "Enter" && game.isPlaying === false){
     document.getElementById("game-start").style.display = "none"
+    document.getElementById("game-over").style.display = "none"
     track.src = 'src/assets/sounds/calypso1.mp3'
     if (audioBtn.classList.contains('on')){
       track.play()
@@ -32,18 +33,31 @@ function playSound() {
 
 }
 
-audioBtn.addEventListener('click', playPause)
+audioBtn.addEventListener('mousedown', playPause)
 
 function playPause() {
+  const push = () => {
+    audioBtn.style.margin = '0 0 0 7px'
+    document.removeEventListener('mouseup', push)
+
+  }
 if (!audioBtn.classList.contains('on')){
   track.play();
   audioBtn.classList.add('on')
+  audioBtn.src = 'src/assets/images/pausebutton.png'
+  audioBtn.style.margin = '2px 0 -2px 7px'
+  audioBtn.addEventListener('mouseup', push)
 } else {
   track.pause();
   audioBtn.classList.remove('on')
+  audioBtn.src = 'src/assets/images/playbutton.png'
+  audioBtn.style.margin = '2px 0 -2px 7px'
+  audioBtn.addEventListener('mouseup', push)
 }
 
 }
+
+
 
 
 const howTo = document.getElementById("how-to-play");
@@ -79,29 +93,12 @@ window.onclick = function (e) {
 }
 
 
-// let canvas = document.getElementById("game-canvas");
-// let ctx = canvas.getContext('2d');
-// let ctxHeight = canvas.height;
-// let ctxWidth = canvas.width;
 
 
 
 
 
-// ctx.clearRect(0, 0, ctxWidth, ctxHeight);
 
-
-// let basket = new Basket(ctxWidth, ctxHeight, canvas);
-
-// let coconut = new Coconut(ctxWidth, ctxHeight);
-
-// function loop(){
-  
-//   coconut.move(ctx);
-//   basket.draw(ctx);
-// }
-
-// setInterval(game.draw, 10)
 
 
 

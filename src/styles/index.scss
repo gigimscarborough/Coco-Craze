@@ -232,9 +232,14 @@ margin-top: 20px;
 z-index: 2;
 }
 #audio-btn{
+  background-image: url(../assets/images/pausebutton.png);
+  background-size: cover;
   font-size: 20px;
   cursor: pointer;
   margin-left: 7px;
+  height: 27px;
+  width:27px;
+
 }
 .scoreboard{
   display: flex;
@@ -279,6 +284,45 @@ z-index: 2;
   text-align: center;
   width: 450px;
 
+}
+#level-change{
+  display:none;
+  position: absolute;
+  font-size: 100px;
+  font-family: 'Tangerine', cursive;
+  text-align: center;
+  width: 450px;
+  animation: fade ease 5s;
+  -webkit-animation: fade ease 5s;
+}
+@keyframes fade {
+  0% {
+    opacity:0;
+  }
+  50% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+#game-over{
+  display:none;
+  position: absolute;
+  font-size: 100px;
+  font-family: 'Tangerine', cursive;
+  text-align: center;
+  width: 450px;
+  animation: fadeStop ease 3.5s;
+  -webkit-animation: fadeStop ease 3.5s;
+}
+@keyframes fadeStop {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
 }
 
 #audio{
