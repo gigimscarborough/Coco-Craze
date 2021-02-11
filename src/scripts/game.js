@@ -4,8 +4,8 @@ import Mango from './mango';
 import Spider from './spider';
 
 class Game {
-    constructor(){
-        
+    constructor() {
+
         this.canvas = document.getElementById("game-canvas");
         this.ctx = this.canvas.getContext('2d');
         this.ctxHeight = this.canvas.height;
@@ -29,58 +29,74 @@ class Game {
         this.isPlaying = false;
         this.track = document.getElementById("audio")
         this.audioBtn = document.getElementById("audio-btn")
-        
+
     }
 
-   startGame(){
-       this.basket
-       this.coconut
-       this.displayScore();
-    //    this.loop = setInterval(this.draw, 10)
+    startGame() {
+        this.basket
+        this.coconut
+        this.displayScore();
+        //    this.loop = setInterval(this.draw, 10)
+        document.getElementById('level-bg').style.display = "none"
+        document.getElementById("level-change").innerHTML = `Level One`
         document.getElementById("level-change").style.display = "block"
         setTimeout(() => {
             document.getElementById("level-change").style.display = "none"
-            window.requestAnimationFrame(this.levelOne)
+            document.getElementById('level-bg').src = "src/assets/images/level1.jpg"
+            document.getElementById('level-bg').style.display = "block"
             setTimeout(() => {
-                window.cancelAnimationFrame(this.stopId)
-                this.ctx.clearRect(0, 0, 720, 425); 
-                document.getElementById("level-change").innerHTML = `Level Two`
-                document.getElementById("level-change").style.display = "block"
-                setTimeout(() => {
-                window.requestAnimationFrame(this.levelTwo)
-                document.getElementById("level-change").style.display = "none"
+                window.requestAnimationFrame(this.levelOne)
                 setTimeout(() => {
                     window.cancelAnimationFrame(this.stopId)
                     this.ctx.clearRect(0, 0, 720, 425);
-                    document.getElementById("level-change").innerHTML = `Level Three`
+                    document.getElementById('level-bg').style.display = "none"
+                    document.getElementById("level-change").innerHTML = `Level Two`
                     document.getElementById("level-change").style.display = "block"
                     setTimeout(() => {
-                        window.requestAnimationFrame(this.levelThree)
                         document.getElementById("level-change").style.display = "none"
-                    }, 5000)
+                        document.getElementById('level-bg').src = "src/assets/images/level2.jpg"
+                        document.getElementById('level-bg').style.display = "block"
+                        setTimeout(() => {
+                            window.requestAnimationFrame(this.levelTwo)
+                            setTimeout(() => {
+                                window.cancelAnimationFrame(this.stopId)
+                                this.ctx.clearRect(0, 0, 720, 425);
+                                document.getElementById('level-bg').style.display = "none"
+                                document.getElementById("level-change").innerHTML = `Level Three`
+                                document.getElementById("level-change").style.display = "block"
+                                setTimeout(() => {
+                                    document.getElementById("level-change").style.display = "none"
+                                    document.getElementById('level-bg').src = "src/assets/images/level3.jpg"
+                                    document.getElementById('level-bg').style.display = "block"
+                                    setTimeout(() => {
+                                        window.requestAnimationFrame(this.levelThree)
+                                    }, 5000)
+                                }, 4000)
+                            }, 10000)
+                        }, 5000)
+                    }, 4000)
                 }, 10000)
-            }, 5000)
-            }, 10000)
+            }, 4000)
 
         }, 5000)
-       this.isPlaying = true
+        this.isPlaying = true
 
-   }
+    }
 
-   levelOne(){
+    levelOne() {
 
-       this.stopId = window.requestAnimationFrame(this.levelOne) 
-       if (this.lives > 0){
-       this.ctx.clearRect(0, 0, 720, 425);
-       this.spider.move(this.ctx)
-       this.coconut.move(this.ctx);
-       this.mango.move(this.ctx);
-       this.basket.draw(this.ctx);
-       } else {
-           
-           this.gameOver()
-       }
-   }
+        this.stopId = window.requestAnimationFrame(this.levelOne)
+        if (this.lives > 0) {
+            this.ctx.clearRect(0, 0, 720, 425);
+            this.spider.move(this.ctx)
+            this.coconut.move(this.ctx);
+            this.mango.move(this.ctx);
+            this.basket.draw(this.ctx);
+        } else {
+
+            this.gameOver()
+        }
+    }
 
     levelTwo() {
 
@@ -127,39 +143,39 @@ class Game {
             this.gameOver()
         }
     }
-   displayScore(){
-       document.getElementById("score").innerText = `Score: ${this.score}`
-       this.handleLives()
+    displayScore() {
+        document.getElementById("score").innerText = `Score: ${this.score}`
+        this.handleLives()
 
-   }
+    }
 
-   gameOver(){
-       this.handleLives()
-    //    clearInterval(this.loop);
-       window.cancelAnimationFrame(this.stopId)
-       this.ctx.clearRect(0, 0, 720, 425);
-       this.isPlaying = false;
-       this.score = 0;
-       this.lives = 3;
-       document.getElementById("audio").src = 'src/assets/sounds/calming-sea-sounds.mp3'
-       document.getElementById("audio").load()
-       if (this.audioBtn.classList.contains('on')) {
-           this.track.play()
-       } else {
-           this.track.pause()
-       }
-       document.getElementById("game-over").style.display = "block"
-    //    document.getElementById("level-change").innerText = `Game Over... Press Enter To Play Again`
+    gameOver() {
+        this.handleLives()
+        //    clearInterval(this.loop);
+        window.cancelAnimationFrame(this.stopId)
+        this.ctx.clearRect(0, 0, 720, 425);
+        this.isPlaying = false;
+        this.score = 0;
+        this.lives = 3;
+        document.getElementById("audio").src = 'src/assets/sounds/calming-sea-sounds.mp3'
+        document.getElementById("audio").load()
+        if (this.audioBtn.classList.contains('on')) {
+            this.track.play()
+        } else {
+            this.track.pause()
+        }
+        document.getElementById("game-over").style.display = "block"
+        //    document.getElementById("level-change").innerText = `Game Over... Press Enter To Play Again`
 
-   }
+    }
 
-   handleLives(){
-       this.lives === 3 ? document.getElementById("lives").innerHTML = `Lives: <p id="heart">&nbsp; &#9829; &#9829; &#9829;</p>` 
-           : this.lives === 2 ? document.getElementById("lives").innerHTML = `Lives: <p id="heart">&nbsp; &#9829; &#9829; &nbsp;</p>`
-               : this.lives === 1 ? document.getElementById("lives").innerHTML = `Lives: <p id="heart">&nbsp; &#9829; &nbsp; &nbsp;</p>` 
-                   : document.getElementById("lives").innerHTML = `Lives: 0` 
-   }
-    
+    handleLives() {
+        this.lives === 3 ? document.getElementById("lives").innerHTML = `Lives: <p id="heart">&nbsp; &#9829; &#9829; &#9829;</p>`
+            : this.lives === 2 ? document.getElementById("lives").innerHTML = `Lives: <p id="heart">&nbsp; &#9829; &#9829; &nbsp;</p>`
+                : this.lives === 1 ? document.getElementById("lives").innerHTML = `Lives: <p id="heart">&nbsp; &#9829; &nbsp; &nbsp;</p>`
+                    : document.getElementById("lives").innerHTML = `Lives: 0`
+    }
+
 }
 
 
