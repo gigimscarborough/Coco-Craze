@@ -6,7 +6,7 @@ import Game from './scripts/game'
 
 const track = document.getElementById("audio")
 const audioBtn = document.getElementById("audio-btn")
-track.volume = 0.5
+track.volume = 0.4
 
 const game = new Game();
 
