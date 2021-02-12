@@ -1,8 +1,8 @@
 class Basket{
     constructor(game){
         this.game = game
-        this.width = 130
-        this.height = 55
+        this.width = 140
+        this.height = 65
         this.startingPos = {
             x: (game.ctxWidth - this.width) / 2,
             y: game.ctxHeight - this.height
@@ -21,7 +21,10 @@ class Basket{
     }
 
     draw(ctx){
-        ctx.drawImage(this.basket, this.startingPos.x, this.startingPos.y, this.width, this.height);
+        if(this.game.isPlaying){
+
+            ctx.drawImage(this.basket, this.startingPos.x, this.startingPos.y, this.width, this.height);
+        }
     }
 
 

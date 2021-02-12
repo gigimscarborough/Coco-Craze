@@ -41,8 +41,9 @@ class Game {
 
     startGame() {
         if (this.stopId){
-            window.cancelAnimationFrame(this.stopId)
             this.ctx.clearRect(0, 0, 720, 425);
+            window.cancelAnimationFrame(this.stopId)
+          
         }
         document.getElementById("level-change").innerHTML = `Level One`
         document.getElementById('level-bg').src = "src/assets/images/level1.jpg"
@@ -131,36 +132,27 @@ class Game {
                             this.ctx.clearRect(0, 0, 720, 425);
                             document.getElementById('level-bg').classList.remove("fade-stop")
                             document.getElementById('level-bg').classList.add("fade-out")
-
                             this.timeOut5 = setTimeout(() => {
                                 window.requestAnimationFrame(this.levelThree)
                             }, 13000)
 
                         }, 15000)
                     }, 14000)
-                // } else {
-                //     window.cancelAnimationFrame(this.stopId)
-                //     this.ctx.clearRect(0, 0, 720, 425);
-                // }
             }, 15000)
         }, 9000)
     }
 
     levelOne(timestamp) {
 
-        this.stopId = window.requestAnimationFrame(this.levelOne);
+            // if(!this.isPlaying){
+            //     this.ctx.clearRect(0, 0, 720, 425);
+            //     window.cancelAnimationFrame(this.stopId)
+            //     this.ctx.clearRect(0, 0, 720, 425);
+            // }
+            if (this.isPlaying){
 
-        // if (timestamp >= 15000) {
-        //     window.cancelAnimationFrame(this.stopId)
-        //     this.ctx.clearRect(0, 0, 720, 425);
-        //     document.getElementById('level-bg').classList.remove("fade-stop")
-        //     document.getElementById('level-bg').classList.add("fade-out")
-
-        // }
-        if(!this.isPlaying){
-    
-            this.ctx.clearRect(0, 0, 720, 425);
-        }
+                this.stopId = window.requestAnimationFrame(this.levelOne);
+            }
 
         if (this.lives > 0) {
             this.ctx.clearRect(0, 0, 720, 425);
@@ -178,20 +170,24 @@ class Game {
 
 
     levelTwo(timestamp) {
-
-        this.stopId = window.requestAnimationFrame(this.levelTwo)
+       
         
+        
+        // if (!this.isPlaying) {
+        //     this.ctx.clearRect(0, 0, 720, 425);
+        //     window.cancelAnimationFrame(this.stopId)
+        //     this.ctx.clearRect(0, 0, 720, 425);
+        // }
+        if (this.isPlaying) {
 
-        if (!this.isPlaying) {
-           
-            this.ctx.clearRect(0, 0, 720, 425);
+            this.stopId = window.requestAnimationFrame(this.levelTwo);
         }
         if (this.lives > 0) {
             this.ctx.clearRect(0, 0, 720, 425);
-            this.spider.direction.y = 2.3
-            this.spider2.direction.y = 2.4
-            this.coconut.direction.y = 2.2
-            this.coconut2.direction.y = 2.3
+            this.spider.direction.y = 2.4
+            this.spider2.direction.y = 2.5
+            this.coconut.direction.y = 2.3
+            this.coconut2.direction.y = 2.4
             this.spider.move(this.ctx);
             this.spider2.move(this.ctx)
             this.coconut.move(this.ctx);
@@ -206,18 +202,23 @@ class Game {
 
     levelThree() {
 
-        this.stopId = window.requestAnimationFrame(this.levelThree)
-        if (!this.isPlaying) {
-            this.ctx.clearRect(0, 0, 720, 425);
+        // if (!this.isPlaying) {
+        //     this.ctx.clearRect(0, 0, 720, 425);
+        //     window.cancelAnimationFrame(this.stopId)
+        //     this.ctx.clearRect(0, 0, 720, 425);
+        // }
+        if (this.isPlaying) {
+
+            this.stopId = window.requestAnimationFrame(this.levelThree);
         }
         if (this.lives > 0) {
             this.ctx.clearRect(0, 0, 720, 425);
-            this.spider.direction.y = 2.4
-            this.spider2.direction.y = 2.4
-            this.spider3.direction.y = 2.5
-            this.spider4.direction.y = 2.5
-            this.coconut.direction.y = 2.3
-            this.coconut2.direction.y = 2.4
+            this.spider.direction.y = 2.5
+            this.spider2.direction.y = 2.5
+            this.spider3.direction.y = 2.6
+            this.spider4.direction.y = 2.6
+            this.coconut.direction.y = 2.4
+            this.coconut2.direction.y = 2.5
             this.spider.move(this.ctx);
             this.spider2.move(this.ctx)
             this.spider3.move(this.ctx);
@@ -239,10 +240,13 @@ class Game {
 
     gameOver() {
         this.handleLives()
-        //    clearInterval(this.loop);
         window.cancelAnimationFrame(this.stopId)
-
-        // this.timeOuts.forEach( timeOut => clearTimeout(timeOut))
+        debugger
+        clearTimeout(this.timeOut1)
+        clearTimeout(this.timeOut2)
+        clearTimeout(this.timeOut3)
+        clearTimeout(this.timeOut4)
+        clearTimeout(this.timeOut5)
         // clearTimeout(this.timeOut)
         this.level = 1
         this.ctx.clearRect(0, 0, 720, 425);

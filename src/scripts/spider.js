@@ -7,7 +7,7 @@ class Spider {
         }
         this.direction = {
             x: 0,
-            y: 2.2
+            y: 2.4
         }
         this.spider = new Image();
         this.spider.src = 'src/assets/images/spider.png'

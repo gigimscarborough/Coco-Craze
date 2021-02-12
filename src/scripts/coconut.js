@@ -7,7 +7,7 @@ class Coconut {
         }
         this.direction = {
             x: 0,
-            y: 2
+            y: 2.2
         }
         this.coconut = new Image();
         this.coconut.src = 'src/assets/images/coconut.png'
@@ -19,7 +19,7 @@ class Coconut {
     }
 
     draw(ctx) {
-        ctx.drawImage(this.coconut, this.startingPos.x, this.startingPos.y, 30, 30);
+        ctx.drawImage(this.coconut, this.startingPos.x, this.startingPos.y, 40, 40);
     }
 
     move(ctx){

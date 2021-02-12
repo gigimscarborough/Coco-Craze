@@ -85,6 +85,7 @@ background.addEventListener("animationend", () => {
     levelChange.style.display = "block"
 
     game.level === 1 ? background.src = "src/assets/images/level1.jpg" : game.level === 2 ? background.src = "src/assets/images/level2.jpg" : game.level === 3 ? background.src = "src/assets/images/level3.jpg" : background.src = "src/assets/images/level1.jpg"
+
   }
 
   if (background.classList.contains("fade-out") && !game.isPlaying) {
@@ -96,8 +97,27 @@ background.addEventListener("animationend", () => {
  
 })
 
+background.addEventListener("animationstart", () => {
+  if (background.classList.contains("fade-out")) {
+
+    game.spider.startingPos.y = -60
+    game.spider2.startingPos.y = -60
+    game.coconut.startingPos.y = -60
+    game.coconut2.startingPos.y = -60
+    game.mango.startingPos.y = -60
+    game.spider3.startingPos.y = -60
+    game.spider4.startingPos.y = -60
+  
+  }
+
+
+})
+
 
 gameO.addEventListener("animationend", () => {
+  game.ctx.clearRect(0, 0, 720, 425);
+  window.cancelAnimationFrame(game.stopId)
+  game.ctx.clearRect(0, 0, 720, 425);
   
 })
 //

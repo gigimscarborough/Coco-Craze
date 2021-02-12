@@ -7,7 +7,7 @@ class Mango {
         }
         this.direction = {
             x: 0,
-            y: 1.5
+            y: 1.7
         }
         this.mango = new Image();
         this.mango.src = 'src/assets/images/mango.png'
@@ -19,7 +19,7 @@ class Mango {
     }
 
     draw(ctx) {
-        ctx.drawImage(this.mango, this.startingPos.x, this.startingPos.y, 45, 45);
+        ctx.drawImage(this.mango, this.startingPos.x, this.startingPos.y, 55, 55);
     }
 
     move(ctx) {
