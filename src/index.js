@@ -57,6 +57,51 @@ if (!audioBtn.classList.contains('on')){
 
 }
 
+//game event listeners
+const levelChange = document.getElementById("level-change")
+const background = document.getElementById('level-bg')
+const gameO = document.getElementById('game-over')
+levelChange.addEventListener('animationstart', () =>{
+})
+
+levelChange.addEventListener('animationend', () => {
+  levelChange.style.display = "none";
+  background.style.display = "block";
+  game.level ++;
+  if (game.level > 1){
+    background.classList.remove("fade-out");
+    background.classList.add("fade-stop");
+    game.level === 1 ? levelChange.innerHTML = `Level One` : game.level === 2 ? levelChange.innerHTML = `Level Two` : game.level === 3 ? levelChange.innerHTML = `Level Three` : levelChange.innerHTML = `Level One`
+  }
+})
+
+background.addEventListener("animationend", () => {
+  // if(background.classList.contains("fade-stop") && game.isPlaying){
+  //   game.level === 2 ? window.requestAnimationFrame(game.levelOne) : game.level === 3 ? window.requestAnimationFrame(game.levelTwo): null
+  // }
+  
+  if (background.classList.contains("fade-out") && game.isPlaying){
+    background.style.display = "none"
+    levelChange.style.display = "block"
+
+    game.level === 1 ? background.src = "src/assets/images/level1.jpg" : game.level === 2 ? background.src = "src/assets/images/level2.jpg" : game.level === 3 ? background.src = "src/assets/images/level3.jpg" : background.src = "src/assets/images/level1.jpg"
+  }
+
+  if (background.classList.contains("fade-out") && !game.isPlaying) {
+    background.style.display = "none";
+    background.src = "src/assets/images/level1.jpg"
+    levelChange.innerHTML = `Level One`
+  }
+
+ 
+})
+
+
+gameO.addEventListener("animationend", () => {
+  
+})
+//
+
 
 
 
