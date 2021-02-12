@@ -20,7 +20,6 @@ class Game {
         this.spider4 = new Spider(this)
         this.startGame = this.startGame.bind(this);
         this.levelOne = this.levelOne.bind(this);
-        // this.l1C = this.l1C.bind(this)
         this.levelTwo = this.levelTwo.bind(this);
         this.levelThree = this.levelThree.bind(this);
         this.displayScore = this.displayScore.bind(this);
@@ -159,7 +158,8 @@ class Game {
 
         // }
         if(!this.isPlaying){
-            window.cancelAnimationFrame(this.stopId)
+    
+            this.ctx.clearRect(0, 0, 720, 425);
         }
 
         if (this.lives > 0) {
@@ -183,7 +183,8 @@ class Game {
         
 
         if (!this.isPlaying) {
-            window.cancelAnimationFrame(this.stopId)
+           
+            this.ctx.clearRect(0, 0, 720, 425);
         }
         if (this.lives > 0) {
             this.ctx.clearRect(0, 0, 720, 425);
@@ -207,7 +208,7 @@ class Game {
 
         this.stopId = window.requestAnimationFrame(this.levelThree)
         if (!this.isPlaying) {
-            window.cancelAnimationFrame(this.stopId)
+            this.ctx.clearRect(0, 0, 720, 425);
         }
         if (this.lives > 0) {
             this.ctx.clearRect(0, 0, 720, 425);
