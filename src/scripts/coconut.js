@@ -10,11 +10,11 @@ class Coconut {
             y: 2.2
         }
         this.coconut = new Image();
-        this.coconut.src = 'src/assets/images/coconut.png'
+        this.coconut.src = 'src/assets/images/coconut.png';
         this.lostLife = this.lostLife.bind(this);
         this.updateLives = this.updateLives.bind(this);
         this.updateScore = this.updateScore.bind(this);
-
+        
         
     }
 
@@ -31,10 +31,14 @@ class Coconut {
 
     lostLife(){
         if ((this.startingPos.y > 372) && (this.startingPos.x > this.game.basket.startingPos.x && this.startingPos.x < this.game.basket.startingPos.x + this.game.basket.width)){
-            this.game.score += 10
-            this.startingPos.y = 0
+            this.game.score += 10;
+            this.startingPos.y = 0;
             this.startingPos.x = Math.floor(Math.random() * this.game.ctxWidth)
-            this.updateScore()
+            this.updateScore();
+            if ( document.getElementById("audio-btn").classList.contains('on')) {
+                document.getElementById('coconut-fx').play()
+                
+            }
         }else if (this.startingPos.y > 420){
             this.game.lives -= 1;
             this.startingPos.y = 0;

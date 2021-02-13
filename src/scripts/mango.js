@@ -35,9 +35,14 @@ class Mango {
             this.startingPos.y = 0
             this.startingPos.x = Math.floor(Math.random() * this.game.ctxWidth)
             this.game.handleLives()
+            if (document.getElementById("audio-btn").classList.contains('on')) {
+                document.getElementById('yum-fx').play()
+                
+            }
         } else if (this.startingPos.y > 420) {
             this.startingPos.y = 0;
             this.startingPos.x = Math.floor(Math.random() * this.game.ctxWidth);
+            this.fx = false
         }
     }
 

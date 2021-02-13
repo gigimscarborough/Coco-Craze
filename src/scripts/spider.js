@@ -13,6 +13,7 @@ class Spider {
         this.spider.src = 'src/assets/images/spider.png'
         this.lostLife = this.lostLife.bind(this);
         this.updateLives = this.updateLives.bind(this);
+        
 
 
 
@@ -35,6 +36,10 @@ class Spider {
             this.startingPos.y = 0
             this.startingPos.x = Math.floor(Math.random() * this.game.ctxWidth)
             this.game.handleLives()
+            if ( document.getElementById("audio-btn").classList.contains('on')){
+                document.getElementById('spider-fx').play()
+                
+            }
         } else if (this.startingPos.y > 420) {
             this.startingPos.y = 0;
             this.startingPos.x = Math.floor(Math.random() * this.game.ctxWidth);
