@@ -25,11 +25,11 @@ document.addEventListener('keydown', (e) => {
 })
 
 
-document.addEventListener('mousemove', playSound)
+document.addEventListener('keydown', playSound)
 function playSound() {
   track.play()
   audioBtn.classList.add('on')
-  document.removeEventListener('mousemove', playSound)
+  document.removeEventListener('keydown', playSound)
 
 }
 
