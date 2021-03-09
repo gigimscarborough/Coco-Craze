@@ -134,12 +134,12 @@ class Game {
                             document.getElementById('level-bg').classList.add("fade-out")
                             this.timeOut5 = setTimeout(() => {
                                 window.requestAnimationFrame(this.levelThree)
-                            }, 13000)
+                            }, 9500)
 
                         }, 15000)
-                    }, 14000)
+                    }, 9500)
             }, 15000)
-        }, 9000)
+        }, 6500)
     }
 
     levelOne(timestamp) {

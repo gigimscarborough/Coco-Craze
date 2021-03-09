@@ -293,8 +293,8 @@ z-index: 2;
   font-family: 'Tangerine', cursive;
   text-align: center;
   width: 450px;
-  animation: fade ease 5s;
-  -webkit-animation: fade ease 5s;
+  animation: fade ease 3.5s;
+  -webkit-animation: fade ease 3.5s;
   z-index: 3;
 }
 @keyframes fade {
@@ -345,8 +345,8 @@ z-index: 2;
 
 }
 .fade-stop{
-animation: fadeStophalf ease 3.5s;
-  -webkit-animation: fadeStophalf ease 3.5s;
+animation: fadeStophalf ease 3s;
+  -webkit-animation: fadeStophalf ease 3s;
 }
 @keyframes fadeStophalf {
   0% {
@@ -358,8 +358,8 @@ animation: fadeStophalf ease 3.5s;
 }
 
 .fade-out{
-animation: fadeOut ease 5s;
-  -webkit-animation: fadeOut ease 5s;
+animation: fadeOut ease 2s;
+  -webkit-animation: fadeOut ease 2s;
 }
 
 @keyframes fadeOut {
